@@ -1,0 +1,817 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>โค ตะ ระ คุ้ม | Ko-Ta-Ra-Kumm</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;500;600;700;800&family=Kanit:wght@400;600;700;800;900&display=swap" rel="stylesheet"/>
+  <style>
+    :root{
+      --blue-900:#0B1D3A; --blue-800:#0F2850; --blue-700:#163566;
+      --blue-500:#1E4DB7; --blue-400:#2D62D9; --blue-100:#E8EEF8; --blue-50:#F2F5FC;
+      --yellow:#F5C800; --yellow-light:#FFE066; --yellow-dark:#C9A200;
+      --white:#FFFFFF;
+      --gray-50:#F8F9FB; --gray-100:#EFF1F5; --gray-200:#DDE1EA;
+      --gray-400:#8F97A8; --gray-600:#4A5568; --gray-800:#1A202C;
+      --shadow:0 4px 16px rgba(11,29,58,0.10);
+      --shadow-md:0 8px 28px rgba(11,29,58,0.13);
+      --r:16px; --r-sm:10px;
+    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    body{font-family:'Sarabun',sans-serif;background:var(--blue-50);color:var(--gray-800);min-height:100vh;}
+
+    /* ─── HEADER ─── */
+    header{background:var(--blue-900);padding:28px 20px 36px;text-align:center;position:relative;overflow:hidden;}
+    header::after{content:'';position:absolute;bottom:0;left:0;right:0;height:4px;background:var(--yellow);}
+    header::before{content:'';position:absolute;inset:0;background-image:radial-gradient(circle,rgba(255,255,255,0.04) 1px,transparent 1px);background-size:28px 28px;pointer-events:none;}
+    .brand-row{display:inline-flex;align-items:center;gap:8px;margin-bottom:16px;}
+    .brand-dot{width:7px;height:7px;background:var(--yellow);border-radius:50%;}
+    .brand-name{font-size:11px;font-weight:700;color:rgba(255,255,255,0.45);letter-spacing:2.5px;text-transform:uppercase;}
+    .header-title{font-family:'Kanit',sans-serif;font-size:clamp(28px,7vw,44px);font-weight:900;color:var(--white);line-height:1.1;margin-bottom:10px;}
+    .header-title em{font-style:normal;color:var(--yellow);}
+    .header-sub{font-size:14px;color:rgba(255,255,255,0.45);}
+    .chips{display:flex;justify-content:center;flex-wrap:wrap;gap:6px;margin-top:14px;}
+    .chip{background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);color:rgba(255,255,255,0.5);border-radius:100px;padding:4px 12px;font-size:11px;font-weight:600;letter-spacing:.5px;}
+
+    /* ─── LAYOUT ─── */
+    main{max-width:600px;margin:0 auto;padding:0 14px 80px;}
+    .card{background:var(--white);border-radius:var(--r);box-shadow:var(--shadow);margin-top:16px;overflow:hidden;border:1px solid var(--gray-100);}
+    .card-head{padding:15px 20px 13px;border-bottom:1px solid var(--gray-100);display:flex;align-items:center;gap:10px;}
+    .card-icon{width:32px;height:32px;background:var(--blue-100);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0;}
+    .card-icon.y{background:#FFF9D6;} .card-icon.g{background:#E6FAF0;}
+    .card-title{font-family:'Kanit',sans-serif;font-size:15px;font-weight:700;color:var(--blue-900);}
+    .card-body{padding:18px 20px 20px;}
+
+    /* ─── FIELDS ─── */
+    .field{margin-bottom:13px;} .field:last-child{margin-bottom:0;}
+    label{display:block;font-size:12px;font-weight:700;color:var(--gray-600);margin-bottom:5px;letter-spacing:.3px;text-transform:uppercase;}
+    label .opt{font-weight:400;color:var(--gray-400);text-transform:none;letter-spacing:0;font-size:11px;}
+    input,select{width:100%;padding:10px 13px;border:1.5px solid var(--gray-200);border-radius:var(--r-sm);font-family:'Sarabun',sans-serif;font-size:15px;color:var(--gray-800);background:var(--gray-50);outline:none;-webkit-appearance:none;transition:border-color .18s,box-shadow .18s,background .18s;}
+    input:focus,select:focus{border-color:var(--blue-400);box-shadow:0 0 0 3px rgba(30,77,183,0.1);background:var(--white);}
+    .g2{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+
+    /* ─── A/B PANELS ─── */
+    .ab-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+    .opt-panel{border:1.5px solid var(--gray-200);border-radius:var(--r-sm);padding:12px;transition:border-color .2s,background .2s;}
+    .opt-panel.win-a{border-color:var(--blue-500);background:#F0F5FF;}
+    .opt-panel.win-b{border-color:var(--yellow-dark);background:#FFFCEB;}
+    .opt-lbl{font-family:'Kanit',sans-serif;font-size:22px;font-weight:900;margin-bottom:8px;}
+    .lbl-a{color:var(--blue-500);} .lbl-b{color:var(--yellow-dark);}
+    .img-drop{border:1.5px dashed var(--gray-200);border-radius:8px;height:80px;display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;overflow:hidden;position:relative;margin-bottom:10px;transition:border-color .18s;}
+    .img-drop:hover{border-color:var(--blue-400);}
+    .img-drop input{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%;}
+    .img-drop-icon{font-size:20px;margin-bottom:2px;} .img-drop-txt{font-size:11px;color:var(--gray-400);}
+    .of .field{margin-bottom:7px;} .of label{font-size:11px;margin-bottom:3px;}
+    .of input,.of select{font-size:13px;padding:7px 10px;}
+    .m2{display:grid;grid-template-columns:1fr 1fr;gap:6px;}
+
+    /* ─── BUTTONS ─── */
+    .btn-calc{width:100%;background:var(--blue-900);color:var(--yellow);border:none;border-radius:var(--r);padding:16px;font-family:'Kanit',sans-serif;font-size:18px;font-weight:800;cursor:pointer;margin-top:16px;transition:background .18s,transform .12s;display:flex;align-items:center;justify-content:center;gap:8px;}
+    .btn-calc:hover{background:var(--blue-800);transform:translateY(-1px);}
+    .btn-export{width:100%;background:var(--yellow);color:var(--blue-900);border:none;border-radius:var(--r);padding:14px;font-family:'Kanit',sans-serif;font-size:16px;font-weight:800;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;transition:background .15s,transform .12s;}
+    .btn-export:hover{background:var(--yellow-light);transform:translateY(-1px);}
+
+    /* ─── RESULT ─── */
+    #result-section{display:none;}
+    .winner-block{background:var(--blue-900);border-radius:var(--r);padding:20px 18px 16px;text-align:center;margin-bottom:12px;position:relative;overflow:hidden;}
+    .winner-block::after{content:'';position:absolute;bottom:0;left:0;right:0;height:3px;background:var(--yellow);}
+    .w-eye{font-size:11px;font-weight:700;color:var(--yellow);letter-spacing:2px;text-transform:uppercase;margin-bottom:5px;}
+    .w-name{font-family:'Kanit',sans-serif;font-size:22px;font-weight:900;color:var(--white);line-height:1.2;margin-bottom:4px;}
+    .w-save{font-size:13px;color:rgba(255,255,255,0.45);}
+    .compare-row{display:grid;grid-template-columns:1fr 40px 1fr;gap:8px;align-items:center;margin-bottom:12px;}
+    .c-box{border-radius:var(--r-sm);padding:13px 10px;text-align:center;}
+    .c-box.win{background:var(--blue-50);border:2px solid var(--blue-500);}
+    .c-box.lose{background:var(--gray-50);border:1.5px solid var(--gray-200);}
+    .c-lbl{font-size:10px;font-weight:700;color:var(--gray-400);text-transform:uppercase;letter-spacing:.5px;margin-bottom:3px;}
+    .c-nm{font-family:'Kanit',sans-serif;font-size:13px;font-weight:700;margin-bottom:2px;color:var(--gray-800);}
+    .c-pr{font-family:'Kanit',sans-serif;font-size:21px;font-weight:900;color:var(--blue-500);}
+    .c-box.lose .c-pr{color:var(--gray-400);}
+    .c-unit{font-size:10px;color:var(--gray-400);margin-top:1px;}
+    .vs-pill{width:40px;height:40px;border-radius:50%;background:var(--blue-900);color:var(--yellow);display:flex;align-items:center;justify-content:center;font-family:'Kanit',sans-serif;font-size:11px;font-weight:800;flex-shrink:0;}
+    .bar-wrap{margin:10px 0 14px;}
+    .bar-top{display:flex;justify-content:space-between;font-size:12px;color:var(--gray-400);margin-bottom:5px;}
+    .bar-track{background:var(--gray-100);border-radius:100px;height:8px;overflow:hidden;}
+    .bar-fill{height:100%;border-radius:100px;background:linear-gradient(90deg,var(--blue-500),var(--yellow));transition:width .7s cubic-bezier(.4,0,.2,1);}
+    .stats4{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
+    .s-box{background:var(--gray-50);border:1px solid var(--gray-100);border-radius:var(--r-sm);padding:12px;text-align:center;}
+    .s-val{font-family:'Kanit',sans-serif;font-size:19px;font-weight:800;color:var(--blue-900);}
+    .s-lbl{font-size:11px;color:var(--gray-400);margin-top:2px;}
+    .s-box.acc{background:var(--blue-900);border-color:var(--blue-900);}
+    .s-box.acc .s-val{color:var(--yellow);} .s-box.acc .s-lbl{color:rgba(255,255,255,0.4);}
+
+    /* ─── HOOKS ─── */
+    .hooks-list{display:grid;gap:7px;}
+    .hook-row{display:flex;align-items:center;gap:10px;background:var(--gray-50);border:1px solid var(--gray-100);border-radius:var(--r-sm);padding:10px 12px;cursor:pointer;transition:border-color .15s,background .15s;}
+    .hook-row:hover{border-color:var(--blue-400);background:var(--blue-50);}
+    .h-num{font-size:11px;font-weight:700;color:var(--gray-400);min-width:18px;}
+    .h-txt{font-size:14px;color:var(--gray-800);flex:1;line-height:1.4;}
+    .h-copy{font-size:15px;opacity:.4;transition:opacity .15s;flex-shrink:0;}
+    .hook-row:hover .h-copy{opacity:1;}
+
+    /* ─── CAPTIONS ─── */
+    .cap-tabs{display:flex;gap:6px;margin-bottom:12px;overflow-x:auto;}
+    .cap-tab{padding:7px 14px;border-radius:100px;border:1.5px solid var(--gray-200);background:var(--white);font-size:12px;font-weight:700;color:var(--gray-600);cursor:pointer;white-space:nowrap;transition:all .15s;}
+    .cap-tab.on{background:var(--blue-900);color:var(--yellow);border-color:var(--blue-900);}
+    .cap-body{background:var(--gray-50);border:1px solid var(--gray-100);border-radius:var(--r-sm);padding:14px;font-size:14px;line-height:1.75;color:var(--gray-800);white-space:pre-wrap;position:relative;}
+    .cap-copy-btn{position:absolute;top:10px;right:10px;background:var(--white);border:1px solid var(--gray-200);border-radius:7px;padding:4px 10px;font-size:11px;font-weight:700;cursor:pointer;color:var(--gray-600);}
+    .cap-copy-btn:hover{background:var(--gray-100);}
+
+    /* ─── TEASER IMAGE ─── */
+    #teaser-wrap{border-radius:var(--r-sm);overflow:hidden;margin-bottom:14px;box-shadow:var(--shadow-md);}
+    #teaser-wrap canvas{display:block;width:100%;height:auto;}
+
+    /* ─── IMAGE GENERATOR ─── */
+    .tmpl-row{display:flex;gap:8px;overflow-x:auto;padding-bottom:6px;margin-bottom:14px;}
+    .tmpl-thumb{flex-shrink:0;width:90px;border-radius:8px;overflow:hidden;border:2px solid var(--gray-200);cursor:pointer;transition:border-color .15s,transform .1s;}
+    .tmpl-thumb.on{border-color:var(--blue-500);transform:scale(1.04);}
+    .tmpl-inner{height:108px;display:flex;align-items:center;justify-content:center;font-size:22px;}
+    .tmpl-lbl{background:var(--gray-50);padding:5px;font-size:9px;font-weight:700;text-align:center;color:var(--gray-600);}
+    .t1 .tmpl-inner{background:var(--blue-900);}
+    .t2 .tmpl-inner{background:#F4F6FA;}
+    .t3 .tmpl-inner{background:#0D1117;}
+    .t4 .tmpl-inner{background:linear-gradient(135deg,#1E4DB7,#0B1D3A);}
+    .t5 .tmpl-inner{background:var(--yellow);}
+    #canvas-wrap{border-radius:var(--r-sm);overflow:hidden;margin-bottom:14px;box-shadow:var(--shadow-md);}
+    canvas{display:block;width:100%;height:auto;}
+
+    /* ─── SECTION DIVIDER ─── */
+    .divider{display:flex;align-items:center;gap:8px;font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--gray-400);margin-bottom:12px;}
+    .divider::before,.divider::after{content:'';flex:1;height:1px;background:var(--gray-100);}
+
+    /* ─── TEASER SECTION ─── */
+    .gen-btns{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px;}
+    .btn-gen{background:var(--blue-50);border:1.5px solid var(--blue-100);color:var(--blue-700);border-radius:var(--r-sm);padding:11px 10px;font-family:'Kanit',sans-serif;font-size:13px;font-weight:700;cursor:pointer;text-align:center;transition:all .15s;}
+    .btn-gen:hover{background:var(--blue-100);border-color:var(--blue-400);}
+    .btn-gen.active{background:var(--blue-900);color:var(--yellow);border-color:var(--blue-900);}
+    .export-row{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+
+    /* ─── TOAST ─── */
+    .toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(60px);background:var(--blue-900);color:var(--white);padding:11px 22px;border-radius:100px;font-size:13px;font-weight:600;z-index:999;pointer-events:none;white-space:nowrap;transition:transform .28s cubic-bezier(.4,0,.2,1);border-bottom:2px solid var(--yellow);}
+    .toast.show{transform:translateX(-50%) translateY(0);}
+
+    @keyframes up{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+    .ani{animation:up .35s ease both;}
+    footer{text-align:center;padding:20px;font-size:12px;color:var(--gray-400);}
+    ::-webkit-scrollbar{width:3px;height:3px;}
+    ::-webkit-scrollbar-thumb{background:var(--gray-200);border-radius:2px;}
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="brand-row">
+    <div class="brand-dot"></div>
+    <span class="brand-name">Ko-Ta-Ra-Kumm · โค ตะ ระ คุ้ม</span>
+    <div class="brand-dot"></div>
+  </div>
+  <h1 class="header-title">ซื้อแบบไหน<br><em>คุ้มกว่ากัน?</em></h1>
+  <p class="header-sub">คำนวณต้นทุนต่อหน่วย พร้อมสร้างภาพโพสต์</p>
+  <div class="chips">
+    <span class="chip">Shopee</span>
+    <span class="chip">TikTok</span>
+    <span class="chip">Facebook</span>
+    <span class="chip">Affiliate</span>
+  </div>
+</header>
+
+<main>
+
+  <!-- PRODUCT INFO -->
+  <div class="card">
+    <div class="card-head">
+      <div class="card-icon">📦</div>
+      <div class="card-title">ข้อมูลสินค้า</div>
+    </div>
+    <div class="card-body">
+      <div class="field">
+        <label>ชื่อสินค้า</label>
+        <input type="text" id="product-name" placeholder="เช่น ผงซักฟอก Ariel, นมอัลมอนด์..."/>
+      </div>
+      <div class="g2">
+        <div class="field" style="margin-bottom:0">
+          <label>หมวดหมู่</label>
+          <select id="category">
+            <option value="">เลือกหมวดหมู่</option>
+            <option>🧴 ของใช้ในบ้าน</option><option>🥤 อาหาร & เครื่องดื่ม</option>
+            <option>💄 ความงาม & สุขภาพ</option><option>👕 เสื้อผ้า & แฟชั่น</option>
+            <option>📱 อิเล็กทรอนิกส์</option><option>🐾 สัตว์เลี้ยง</option>
+            <option>🌿 อาหารเสริม</option><option>⚙️ อื่นๆ</option>
+          </select>
+        </div>
+        <div class="field" style="margin-bottom:0">
+          <label>ลิงก์ Affiliate <span class="opt">(ไม่บังคับ)</span></label>
+          <input type="url" id="affiliate-link" placeholder="https://..."/>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- A/B COMPARE -->
+  <div class="card">
+    <div class="card-head">
+      <div class="card-icon">⚖️</div>
+      <div class="card-title">เปรียบเทียบ 2 ตัวเลือก</div>
+    </div>
+    <div class="card-body">
+      <div class="ab-grid">
+        <!-- A -->
+        <div class="opt-panel" id="panel-a">
+          <div class="opt-lbl lbl-a">A</div>
+          <div class="img-drop"><input type="file" accept="image/*" onchange="handleImg('a',event)"/><div id="prev-a"><div class="img-drop-icon">🖼️</div><div class="img-drop-txt">อัปโหลดรูป</div></div></div>
+          <div class="of">
+            <div class="field"><label>ชื่อแพ็ก</label><input type="text" id="a-name" placeholder="แบบเล็ก…"/></div>
+            <div class="m2">
+              <div class="field" style="margin-bottom:0"><label>จำนวน</label><input type="number" id="a-qty" placeholder="100" min="0" step="any"/></div>
+              <div class="field" style="margin-bottom:0"><label>หน่วย</label><select id="a-unit"><option>กรัม</option><option>กิโลกรัม</option><option>มล.</option><option>ลิตร</option><option>ชิ้น</option><option>แผ่น</option><option>เม็ด</option><option>ซอง</option><option>กล่อง</option><option>แพ็ก</option><option>ขวด</option></select></div>
+            </div>
+            <div class="field" style="margin-top:8px;margin-bottom:0"><label>ราคา (บาท)</label><input type="number" id="a-price" placeholder="0.00" min="0" step="any"/></div>
+          </div>
+        </div>
+        <!-- B -->
+        <div class="opt-panel" id="panel-b">
+          <div class="opt-lbl lbl-b">B</div>
+          <div class="img-drop"><input type="file" accept="image/*" onchange="handleImg('b',event)"/><div id="prev-b"><div class="img-drop-icon">🖼️</div><div class="img-drop-txt">อัปโหลดรูป</div></div></div>
+          <div class="of">
+            <div class="field"><label>ชื่อแพ็ก</label><input type="text" id="b-name" placeholder="แบบใหญ่…"/></div>
+            <div class="m2">
+              <div class="field" style="margin-bottom:0"><label>จำนวน</label><input type="number" id="b-qty" placeholder="500" min="0" step="any"/></div>
+              <div class="field" style="margin-bottom:0"><label>หน่วย</label><select id="b-unit"><option>กรัม</option><option>กิโลกรัม</option><option>มล.</option><option>ลิตร</option><option>ชิ้น</option><option>แผ่น</option><option>เม็ด</option><option>ซอง</option><option>กล่อง</option><option>แพ็ก</option><option>ขวด</option></select></div>
+            </div>
+            <div class="field" style="margin-top:8px;margin-bottom:0"><label>ราคา (บาท)</label><input type="number" id="b-price" placeholder="0.00" min="0" step="any"/></div>
+          </div>
+        </div>
+      </div>
+      <button class="btn-calc" onclick="calculate()">คำนวณเลย →</button>
+    </div>
+  </div>
+
+  <!-- RESULTS -->
+  <div id="result-section">
+
+    <!-- Summary -->
+    <div class="card ani">
+      <div class="card-head"><div class="card-icon y">🏆</div><div class="card-title">ผลการเปรียบเทียบ</div></div>
+      <div class="card-body">
+        <div class="winner-block">
+          <div class="w-eye">แนะนำให้เลือก</div>
+          <div class="w-name" id="w-name">—</div>
+          <div class="w-save" id="w-save">—</div>
+        </div>
+        <div class="compare-row">
+          <div class="c-box" id="box-a">
+            <div class="c-lbl">ตัวเลือก A</div>
+            <div class="c-nm" id="r-a-name">—</div>
+            <div class="c-pr" id="r-a-price">—</div>
+            <div class="c-unit" id="r-a-unit">บาท/หน่วย</div>
+          </div>
+          <div class="vs-pill">VS</div>
+          <div class="c-box" id="box-b">
+            <div class="c-lbl">ตัวเลือก B</div>
+            <div class="c-nm" id="r-b-name">—</div>
+            <div class="c-pr" id="r-b-price">—</div>
+            <div class="c-unit" id="r-b-unit">บาท/หน่วย</div>
+          </div>
+        </div>
+        <div class="bar-wrap">
+          <div class="bar-top"><span>ความต่าง</span><span id="pct-txt">0%</span></div>
+          <div class="bar-track"><div class="bar-fill" id="bar" style="width:0%"></div></div>
+        </div>
+        <div class="stats4">
+          <div class="s-box"><div class="s-val" id="st-diff">—</div><div class="s-lbl">ต่างกันต่อหน่วย</div></div>
+          <div class="s-box acc"><div class="s-val" id="st-pct">—</div><div class="s-lbl">คุ้มกว่า</div></div>
+          <div class="s-box"><div class="s-val" id="st-100">—</div><div class="s-lbl">ประหยัดต่อ 100 หน่วย</div></div>
+          <div class="s-box"><div class="s-val" id="st-1k">—</div><div class="s-lbl">ประหยัดต่อ 1,000 หน่วย</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- HOOKS -->
+    <div class="card ani">
+      <div class="card-head"><div class="card-icon">🪝</div><div class="card-title">Hook 20 แบบ — คลิกเพื่อคัดลอก</div></div>
+      <div class="card-body"><div class="hooks-list" id="hooks-list"></div></div>
+    </div>
+
+    <!-- CAPTIONS -->
+    <div class="card ani">
+      <div class="card-head"><div class="card-icon g">✍️</div><div class="card-title">Caption Facebook</div></div>
+      <div class="card-body">
+        <div class="cap-tabs">
+          <button class="cap-tab on" onclick="swCap(0,this)">💰 ความคุ้ม</button>
+          <button class="cap-tab" onclick="swCap(1,this)">💵 ประหยัด</button>
+          <button class="cap-tab" onclick="swCap(2,this)">🔥 โปรแรง</button>
+        </div>
+        <div class="cap-body"><button class="cap-copy-btn" onclick="copyCap()">คัดลอก</button><span id="cap-txt"></span></div>
+      </div>
+    </div>
+
+    <!-- ─── IMAGE GENERATOR ─── -->
+    <div class="card ani">
+      <div class="card-head"><div class="card-icon">🎨</div><div class="card-title">สร้างภาพสำหรับโพสต์</div></div>
+      <div class="card-body">
+
+        <!-- TEASER: ภาพปริศนา ยังไม่เฉลย -->
+        <div class="divider">ภาพ 1 — ให้ลองคิดก่อน (ยังไม่เฉลย)</div>
+        <div id="teaser-wrap"><canvas id="tc" width="1080" height="1350"></canvas></div>
+        <div class="export-row" style="margin-bottom:20px;">
+          <button class="btn-export" onclick="exportCanvas('tc','teaser-normal')" style="background:var(--gray-100);color:var(--blue-900);">⬇ บันทึก สีธรรมดา</button>
+          <button class="btn-export" onclick="exportCanvas('tc2','teaser-color')">⬇ บันทึก น้ำเงิน-เหลือง</button>
+        </div>
+        <div id="teaser-wrap2" style="border-radius:var(--r-sm);overflow:hidden;margin-bottom:14px;box-shadow:var(--shadow-md);">
+          <canvas id="tc2" width="1080" height="1350"></canvas>
+        </div>
+
+        <!-- REVEAL: ภาพเฉลยพร้อมราคา -->
+        <div class="divider">ภาพ 2 — เฉลยพร้อมราคา</div>
+        <div class="tmpl-row">
+          <div class="tmpl-thumb t1 on" onclick="selTpl(0,this)"><div class="tmpl-inner">🌙</div><div class="tmpl-lbl">Dark Pro</div></div>
+          <div class="tmpl-thumb t2" onclick="selTpl(1,this)"><div class="tmpl-inner">☀️</div><div class="tmpl-lbl">Light</div></div>
+          <div class="tmpl-thumb t3" onclick="selTpl(2,this)"><div class="tmpl-inner">🌑</div><div class="tmpl-lbl">Mono</div></div>
+          <div class="tmpl-thumb t4" onclick="selTpl(3,this)"><div class="tmpl-inner">🔵</div><div class="tmpl-lbl">Blue</div></div>
+          <div class="tmpl-thumb t5" onclick="selTpl(4,this)"><div class="tmpl-inner">⭐</div><div class="tmpl-lbl">Gold</div></div>
+        </div>
+        <div id="canvas-wrap"><canvas id="rc" width="1080" height="1350"></canvas></div>
+        <button class="btn-export" onclick="exportCanvas('rc','reveal')">⬇ บันทึกภาพเฉลย JPG</button>
+
+      </div>
+    </div>
+
+  </div><!-- /result-section -->
+</main>
+
+<footer>Ko-Ta-Ra-Kumm · โค ตะ ระ คุ้ม · 2025</footer>
+<div class="toast" id="toast"></div>
+
+<script>
+// ─── STATE ────────────────────────────────────────
+let imgA=null, imgB=null, R=null, activeCap=0, activeTpl=0, caps=[];
+
+// ─── IMAGE UPLOAD ─────────────────────────────────
+function handleImg(side,ev){
+  const f=ev.target.files[0]; if(!f)return;
+  const reader=new FileReader();
+  reader.onload=e=>{
+    const d=e.target.result;
+    if(side==='a')imgA=d; else imgB=d;
+    document.getElementById('prev-'+side).innerHTML=`<img src="${d}" style="width:100%;height:100%;object-fit:cover;"/>`;
+    if(R){renderTeaser();renderCanvas();}
+  };
+  reader.readAsDataURL(f);
+}
+
+// ─── CALCULATE ────────────────────────────────────
+function calculate(){
+  const pn=document.getElementById('product-name').value.trim()||'สินค้า';
+  const aff=document.getElementById('affiliate-link').value.trim();
+  const aN=document.getElementById('a-name').value.trim()||'ตัวเลือก A';
+  const aQ=parseFloat(document.getElementById('a-qty').value)||0;
+  const aU=document.getElementById('a-unit').value;
+  const aP=parseFloat(document.getElementById('a-price').value)||0;
+  const bN=document.getElementById('b-name').value.trim()||'ตัวเลือก B';
+  const bQ=parseFloat(document.getElementById('b-qty').value)||0;
+  const bU=document.getElementById('b-unit').value;
+  const bP=parseFloat(document.getElementById('b-price').value)||0;
+  if(!aQ||!aP||!bQ||!bP){toast('⚠️ กรุณากรอกจำนวนและราคาให้ครบ');return;}
+  const aPpu=aP/aQ, bPpu=bP/bQ;
+  const win=aPpu<=bPpu?'A':'B';
+  const wPpu=win==='A'?aPpu:bPpu, lPpu=win==='A'?bPpu:aPpu;
+  const pct=((lPpu-wPpu)/lPpu)*100, diff=lPpu-wPpu;
+  R={pn,aff,win,a:{n:aN,q:aQ,u:aU,p:aP,ppu:aPpu},b:{n:bN,q:bQ,u:bU,p:bP,ppu:bPpu},pct,diff,save100:diff*100,save1k:diff*1000,savingsAmt:diff*Math.max(aQ,bQ),unit:aU};
+  updateUI(); buildHooks(); buildCaps();
+  renderTeaser();
+  renderCanvas();
+  const rs=document.getElementById('result-section');
+  rs.style.display='block';
+  setTimeout(()=>rs.scrollIntoView({behavior:'smooth',block:'start'}),50);
+  toast('✅ คำนวณเรียบร้อย!');
+}
+
+function fmt(n,d=2){return (+n).toLocaleString('th',{maximumFractionDigits:d});}
+function fmtP(n){return n<10?n.toFixed(4):n.toFixed(2);}
+
+// ─── UI UPDATE ────────────────────────────────────
+function updateUI(){
+  const r=R, wn=r.win==='A'?r.a.n:r.b.n;
+  document.getElementById('w-name').textContent=`แบบ ${r.win} — ${wn} คุ้มกว่า 🎉`;
+  document.getElementById('w-save').textContent=`คุ้มกว่า ${r.pct.toFixed(1)}%  ·  ประหยัดได้ ~${fmt(r.savingsAmt)} บาท`;
+  const wa=r.win==='A';
+  document.getElementById('box-a').className='c-box '+(wa?'win':'lose');
+  document.getElementById('box-b').className='c-box '+(wa?'lose':'win');
+  document.getElementById('r-a-name').textContent=r.a.n;
+  document.getElementById('r-b-name').textContent=r.b.n;
+  document.getElementById('r-a-price').textContent=fmtP(r.a.ppu);
+  document.getElementById('r-b-price').textContent=fmtP(r.b.ppu);
+  document.getElementById('r-a-unit').textContent='บาท/'+r.a.u;
+  document.getElementById('r-b-unit').textContent='บาท/'+r.b.u;
+  document.getElementById('bar').style.width=Math.min(r.pct,100)+'%';
+  document.getElementById('pct-txt').textContent=r.pct.toFixed(1)+'%';
+  document.getElementById('st-diff').textContent=fmtP(r.diff)+' บาท';
+  document.getElementById('st-pct').textContent=r.pct.toFixed(1)+'%';
+  document.getElementById('st-100').textContent=fmt(r.save100)+' บาท';
+  document.getElementById('st-1k').textContent=fmt(r.save1k)+' บาท';
+}
+
+// ─── HOOKS ───────────────────────────────────────
+function buildHooks(){
+  const r=R, pct=r.pct.toFixed(0), save=fmt(r.savingsAmt);
+  const win=r.win==='A'?r.a.n:r.b.n, lose=r.win==='A'?r.b.n:r.a.n, p=r.pn;
+  const hs=[`คนส่วนใหญ่จ่ายแพงกว่า ${pct}% โดยไม่รู้ตัว 😱`,`ซื้อผิดแพ็ก เสียเงินฟรี ${save} บาท!`,`ต่างกันแค่แพ็ก แต่จ่ายแพงกว่าหลายร้อย`,`ก่อนกดซื้อ${p} ลองดูอันนี้ก่อน 👇`,`${pct}% ที่คนไม่รู้เรื่อง${p}`,`ยังซื้อ${lose}อยู่เหรอ? เสียเงินฟรีนะ`,`ฉันเพิ่งรู้ว่า ${win} คุ้มกว่า ${pct}%`,`${p}: แพ็กไหนคุ้มสุด? สรุปแล้ว!`,`ถ้าซื้อ${p}บ่อย อ่านอันนี้ก่อน`,`ประหยัดได้ ${save} บาท แค่เปลี่ยนแพ็ก`,`ทดสอบแล้ว! ${win} ชนะขาด 🏆`,`อย่าซื้อ${p}ก่อนดูอันนี้`,`ราคาต่อหน่วย บอกหมดเลย 📊`,`แพ็กใหญ่ vs แพ็กเล็ก ใครชนะ?`,`${p} แพ็กไหนคุ้มสุด? เฉลยแล้ว!`,`ไม่มีใครบอกเรื่องนี้มาก่อน เรื่อง${p}`,`เซฟเงินง่ายๆ แค่เลือกแพ็กให้ถูก`,`เปรียบเทียบจริง ไม่มีโกง คุ้มแน่นอน`,`Content นี้ทำให้ประหยัดได้ ${save} บาท`,`ก่อนช้อปปิ้งครั้งหน้า Pin อันนี้ไว้ก่อน 📌`];
+  const el=document.getElementById('hooks-list'); el.innerHTML='';
+  hs.forEach((h,i)=>{const d=document.createElement('div');d.className='hook-row';d.innerHTML=`<span class="h-num">${String(i+1).padStart(2,'0')}</span><span class="h-txt">${h}</span><span class="h-copy">📋</span>`;d.onclick=()=>copyTxt(h);el.appendChild(d);});
+}
+
+// ─── CAPTIONS ────────────────────────────────────
+function buildCaps(){
+  const r=R, pct=r.pct.toFixed(1), save=fmt(r.savingsAmt);
+  const win=r.win==='A'?r.a.n:r.b.n, lose=r.win==='A'?r.b.n:r.a.n;
+  const wp=r.win==='A'?fmtP(r.a.ppu):fmtP(r.b.ppu), lp=r.win==='A'?fmtP(r.b.ppu):fmtP(r.a.ppu);
+  const lnk=r.aff?`\n\n🔗 ${r.aff}`:'';
+  caps=[
+    `📊 ${r.pn} แบบไหนคุ้มกว่ากัน?\n\nคำนวณราคาต่อหน่วยให้ดูแล้ว!\n\n✅ ${win}: ${wp} บาท/${r.unit}\n❌ ${lose}: ${lp} บาท/${r.unit}\n\n🏆 ${win} คุ้มกว่า ${pct}%\nประหยัดได้ ~${save} บาท\n\n#คุ้มค่า #ประหยัดเงิน #${r.pn.replace(/\s+/g,'')} #ShopSmart${lnk}`,
+    `💰 หยุดเสียเงินโดยเปล่าประโยชน์!\n\nซื้อ${r.pn}แบบผิด = เสียเงินฟรี ${save} บาท\n\n🔴 ${lose} → ${lp} บาท/${r.unit}\n🟢 ${win} → ${wp} บาท/${r.unit}\n\n📉 ต่างกัน ${pct}% ต่อหน่วย\nแค่เปลี่ยนแพ็ก ประหยัดได้ ${save} บาท!\n\n#ประหยัดเงิน #ซื้อของคุ้ม #${r.pn.replace(/\s+/g,'')}${lnk}`,
+    `🔥 โปร ALERT! ${r.pn}\n\n🥊 A vs B: ผลออกมาแล้ว!\n\n💥 ${win} ชนะขาด!\n✨ ราคาต่อ${r.unit}: ${wp} บาท\n🎯 ถูกกว่า ${pct}%\n💸 ประหยัดได้สูงสุด ${save} บาท!\n\n#โปรเด็ด #${r.pn.replace(/\s+/g,'')} #SaleAlert #Shopee${lnk}`,
+  ];
+  swCap(0);
+}
+function swCap(i){activeCap=i;document.getElementById('cap-txt').textContent=caps[i]||'';document.querySelectorAll('.cap-tab').forEach((t,j)=>t.classList.toggle('on',j===i));}
+function copyCap(){copyTxt(caps[activeCap]);}
+
+// ─── TEMPLATES DEF ────────────────────────────────
+const TPLS=[
+  {bg:'#0B1D3A',acc:'#F5C800',txt:'#FFFFFF',sub:'rgba(255,255,255,0.42)',cBg:'rgba(255,255,255,0.07)',cBdr:'rgba(255,255,255,0.13)',wBg:'#F5C800',wTxt:'#0B1D3A',line:'rgba(255,255,255,0.08)'},
+  {bg:'#F4F6FA',acc:'#1E4DB7',txt:'#0B1D3A',sub:'#8F97A8',cBg:'#FFFFFF',cBdr:'#DDE1EA',wBg:'#1E4DB7',wTxt:'#FFFFFF',line:'#DDE1EA'},
+  {bg:'#0D1117',acc:'#FFFFFF',txt:'#FFFFFF',sub:'rgba(255,255,255,0.38)',cBg:'rgba(255,255,255,0.05)',cBdr:'rgba(255,255,255,0.1)',wBg:'#FFFFFF',wTxt:'#0D1117',line:'rgba(255,255,255,0.07)'},
+  {bg:'#1E4DB7',acc:'#F5C800',txt:'#FFFFFF',sub:'rgba(255,255,255,0.5)',cBg:'rgba(255,255,255,0.1)',cBdr:'rgba(255,255,255,0.18)',wBg:'#F5C800',wTxt:'#1E4DB7',line:'rgba(255,255,255,0.12)'},
+  {bg:'#F5C800',acc:'#0B1D3A',txt:'#0B1D3A',sub:'rgba(11,29,58,0.5)',cBg:'rgba(11,29,58,0.07)',cBdr:'rgba(11,29,58,0.15)',wBg:'#0B1D3A',wTxt:'#F5C800',line:'rgba(11,29,58,0.1)'},
+];
+
+function selTpl(i,el){
+  activeTpl=i;
+  document.querySelectorAll('.tmpl-thumb').forEach((t,j)=>t.classList.toggle('on',j===i));
+  if(R)renderCanvas();
+}
+
+// ─── CANVAS HELPERS ───────────────────────────────
+function rRect(ctx,x,y,w,h,r){
+  ctx.beginPath();
+  ctx.moveTo(x+r,y);ctx.lineTo(x+w-r,y);ctx.quadraticCurveTo(x+w,y,x+w,y+r);
+  ctx.lineTo(x+w,y+h-r);ctx.quadraticCurveTo(x+w,y+h,x+w-r,y+h);
+  ctx.lineTo(x+r,y+h);ctx.quadraticCurveTo(x,y+h,x,y+h-r);
+  ctx.lineTo(x,y+r);ctx.quadraticCurveTo(x,y,x+r,y);ctx.closePath();
+}
+
+// Smart text fitting: scale font size down until text fits in maxW
+function drawFitText(ctx,txt,x,y,maxW,size,font,color){
+  if(!txt)return;
+  let s=size;
+  ctx.font=`${font} ${s}px Kanit`;
+  while(ctx.measureText(txt).width>maxW&&s>14){s-=2;ctx.font=`${font} ${s}px Kanit`;}
+  ctx.fillStyle=color;
+  ctx.fillText(txt,x,y);
+}
+
+// Multi-line text with auto font scaling
+function drawTextBlock(ctx,txt,x,y,maxW,size,font,color,lineH){
+  if(!txt)return size;
+  // try single line first
+  ctx.font=`${font} ${size}px Kanit`;
+  if(ctx.measureText(txt).width<=maxW){
+    ctx.fillStyle=color; ctx.fillText(txt,x,y); return y+lineH;
+  }
+  // word wrap by char for Thai
+  let s=size;
+  ctx.font=`${font} ${s}px Kanit`;
+  while(s>18){
+    if(ctx.measureText(txt).width<=maxW*1.95) break; // 2 lines OK
+    s-=2; ctx.font=`${font} ${s}px Kanit`;
+  }
+  const chars=Array.from(txt); let line='', cy=y;
+  ctx.fillStyle=color;
+  for(let i=0;i<chars.length;i++){
+    const t=line+chars[i];
+    if(ctx.measureText(t).width>maxW&&line){ctx.fillText(line,x,cy);line=chars[i];cy+=s*1.3;}
+    else line=t;
+  }
+  if(line)ctx.fillText(line,x,cy);
+  return cy+(s*1.3);
+}
+
+function drawSarabun(ctx,txt,x,y,size,color,align='center'){
+  ctx.font=`600 ${size}px Sarabun`; ctx.fillStyle=color; ctx.textAlign=align;
+  ctx.fillText(txt,x,y);
+}
+
+// ─── RENDER REVEAL CANVAS ─────────────────────────
+function renderCanvas(){
+  if(!R)return;
+  const canvas=document.getElementById('rc');
+  const ctx=canvas.getContext('2d');
+  const W=1080,H=1350; canvas.width=W;canvas.height=H;
+  const T=TPLS[activeTpl], r=R;
+
+  // BG
+  ctx.fillStyle=T.bg; ctx.fillRect(0,0,W,H);
+  // grid texture
+  ctx.strokeStyle=T.line; ctx.lineWidth=1;
+  for(let x=0;x<W;x+=60){ctx.beginPath();ctx.moveTo(x,0);ctx.lineTo(x,H);ctx.stroke();}
+  for(let y=0;y<H;y+=60){ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(W,y);ctx.stroke();}
+  // top/bottom accent bar
+  ctx.fillStyle=T.acc; ctx.fillRect(0,0,W,6); ctx.fillRect(0,H-6,W,6);
+
+  // brand
+  ctx.textAlign='center';
+  drawSarabun(ctx,'KO-TA-RA-KUMM',W/2,58,22,T.sub);
+  // thin rule
+  ctx.strokeStyle=T.sub; ctx.globalAlpha=0.2; ctx.lineWidth=1;
+  ctx.beginPath();ctx.moveTo(60,68);ctx.lineTo(W-60,68);ctx.stroke();
+  ctx.globalAlpha=1;
+
+  // product name
+  ctx.textAlign='center';
+  const pnSize=Math.min(56, Math.max(32, Math.floor(900/Math.max(r.pn.length,1)*1.4)));
+  drawFitText(ctx,r.pn,W/2,126,W-120,pnSize,'900',T.acc);
+
+  // headline
+  ctx.textAlign='center';
+  drawFitText(ctx,'ซื้อแบบไหนคุ้มกว่ากัน?',W/2,174,W-100,32,'700',T.txt);
+
+  // ── CARDS ──
+  const cY=200,cW=470,cH=470,aX=55,bX=W-55-cW;
+  drawRevealCard(ctx,aX,cY,cW,cH,r,'A',imgA,T);
+  drawRevealCard(ctx,bX,cY,cW,cH,r,'B',imgB,T);
+
+  // VS circle
+  const vsX=W/2,vsY=cY+cH/2;
+  ctx.fillStyle=T.acc; ctx.beginPath();ctx.arc(vsX,vsY,36,0,Math.PI*2);ctx.fill();
+  ctx.fillStyle=T.bg; ctx.font='800 26px Kanit'; ctx.textAlign='center';
+  ctx.fillText('VS',vsX,vsY+10);
+
+  // ── WINNER BANNER ──
+  const wY=cY+cH+36;
+  rRect(ctx,55,wY,W-110,172,18);
+  ctx.fillStyle=T.wBg; ctx.fill();
+  ctx.fillStyle=T.wTxt; ctx.textAlign='center';
+  drawSarabun(ctx,'✅  แนะนำให้เลือก',W/2,wY+38,22,T.wTxt);
+  const wN=r.win==='A'?r.a.n:r.b.n;
+  const wLabel=`แบบ ${r.win} — ${wN}`;
+  drawFitText(ctx,wLabel,W/2,wY+100,W-140,46,'900',T.wTxt);
+  const wPpu=r.win==='A'?r.a.ppu:r.b.ppu;
+  ctx.globalAlpha=0.7;
+  drawSarabun(ctx,`ราคา ${fmtP(wPpu)} บาท/${r.unit}`,W/2,wY+140,24,T.wTxt);
+  ctx.globalAlpha=1;
+
+  // ── STAT BOXES ──
+  const sY=wY+200, sW=(W-110-16)/2;
+  drawStatBox(ctx,55,sY,sW,116,r.pct.toFixed(1)+'%','คุ้มกว่า',T);
+  drawStatBox(ctx,55+sW+16,sY,sW,116,fmt(r.savingsAmt)+' บาท','ประหยัดได้',T);
+
+  // per unit info
+  const infoY=sY+134;
+  ctx.fillStyle=T.sub; ctx.font='22px Sarabun'; ctx.textAlign='center';
+  ctx.fillText(`A: ${fmtP(r.a.ppu)} บาท/${r.a.u}   ·   B: ${fmtP(r.b.ppu)} บาท/${r.b.u}`,W/2,infoY);
+
+  // footer
+  const fY=H-66;
+  ctx.strokeStyle=T.sub; ctx.globalAlpha=0.15; ctx.lineWidth=1;
+  ctx.beginPath();ctx.moveTo(55,fY-16);ctx.lineTo(W-55,fY-16);ctx.stroke();
+  ctx.globalAlpha=1;
+  ctx.fillStyle=T.sub; ctx.font='22px Sarabun'; ctx.textAlign='center';
+  ctx.fillText('#คุ้มค่า  #ประหยัดเงิน  #ShopSmart  #Affiliate',W/2,fY+8);
+  if(r.aff){
+    ctx.fillStyle=T.acc; ctx.font='600 20px Sarabun';
+    const af=r.aff.length>52?r.aff.substring(0,52)+'…':r.aff;
+    ctx.fillText('🔗 '+af,W/2,fY+36);
+  }
+}
+
+function drawRevealCard(ctx,x,y,w,h,r,side,imgData,T){
+  const d=side==='A'?r.a:r.b, isWin=r.win===side;
+  const sc=side==='A'?T.acc:T.txt;
+  rRect(ctx,x,y,w,h,14);
+  ctx.fillStyle=T.cBg; ctx.fill();
+  ctx.strokeStyle=isWin?T.acc:T.cBdr; ctx.lineWidth=isWin?3:1; ctx.stroke();
+
+  // option label
+  ctx.fillStyle=T.acc; ctx.font='900 52px Kanit'; ctx.textAlign='center';
+  ctx.fillText(side,x+w/2,y+54);
+
+  // image
+  const imgY=y+66,imgH=136,imgX=x+14,imgW=w-28;
+  if(imgData){
+    const img=new Image();
+    img.onload=()=>{ctx.save();rRect(ctx,imgX,imgY,imgW,imgH,10);ctx.clip();ctx.drawImage(img,imgX,imgY,imgW,imgH);ctx.restore();};
+    img.src=imgData;
+  } else {
+    rRect(ctx,imgX,imgY,imgW,imgH,10); ctx.fillStyle=T.cBdr; ctx.fill();
+    ctx.fillStyle=T.sub; ctx.font='44px Arial'; ctx.textAlign='center';
+    ctx.fillText('🖼️',x+w/2,imgY+imgH/2+16);
+  }
+
+  const tY=imgY+imgH+24;
+  // pack name
+  ctx.textAlign='center';
+  drawFitText(ctx,d.n,x+w/2,tY,w-24,26,'700',T.txt);
+  // qty + unit
+  ctx.fillStyle=T.sub; ctx.font='22px Sarabun'; ctx.textAlign='center';
+  ctx.fillText(`${d.q} ${d.u}`,x+w/2,tY+34);
+  // price
+  ctx.fillStyle=T.txt; ctx.font='600 26px Sarabun';
+  ctx.fillText(`฿${d.p.toLocaleString()}`,x+w/2,tY+68);
+  // ppu (hero)
+  drawFitText(ctx,fmtP(d.ppu),x+w/2,tY+124,w-30,44,'900',T.acc);
+  ctx.fillStyle=T.sub; ctx.font='20px Sarabun';
+  ctx.fillText(`บาท/${d.u}`,x+w/2,tY+150);
+
+  // winner bottom bar
+  if(isWin){ctx.fillStyle=T.acc;ctx.fillRect(x+14,y+h-7,w-28,4);}
+}
+
+function drawStatBox(ctx,x,y,w,h,val,lbl,T){
+  rRect(ctx,x,y,w,h,12); ctx.fillStyle=T.cBg; ctx.fill();
+  ctx.strokeStyle=T.cBdr; ctx.lineWidth=1; ctx.stroke();
+  ctx.textAlign='center';
+  drawFitText(ctx,val,x+w/2,y+h/2+10,w-20,40,'900',T.acc);
+  ctx.fillStyle=T.sub; ctx.font='22px Sarabun';
+  ctx.fillText(lbl,x+w/2,y+h/2+40);
+}
+
+// ─── RENDER TEASER (ยังไม่เฉลย) ──────────────────
+// Two variants: neutral (light) and branded (blue/yellow)
+function renderTeaser(){
+  if(!R)return;
+  renderTeaserVariant('tc', false);
+  renderTeaserVariant('tc2', true);
+}
+
+function renderTeaserVariant(canvasId, branded){
+  const canvas=document.getElementById(canvasId);
+  const ctx=canvas.getContext('2d');
+  const W=1080,H=1350; canvas.width=W;canvas.height=H;
+  const r=R;
+
+  // Palette
+  const BG     = branded ? '#0B1D3A' : '#FFFFFF';
+  const BG2    = branded ? '#0F2850' : '#F4F6FA';
+  const ACC    = branded ? '#F5C800' : '#1E4DB7';
+  const TXT    = branded ? '#FFFFFF' : '#0B1D3A';
+  const SUB    = branded ? 'rgba(255,255,255,0.45)' : '#8F97A8';
+  const CBDR   = branded ? 'rgba(255,255,255,0.13)' : '#DDE1EA';
+  const CBG    = branded ? 'rgba(255,255,255,0.06)' : '#FFFFFF';
+  const SHADOW = branded ? 'rgba(0,0,0,0.3)' : 'rgba(11,29,58,0.08)';
+
+  ctx.fillStyle=BG; ctx.fillRect(0,0,W,H);
+
+  // subtle grid
+  ctx.strokeStyle=branded?'rgba(255,255,255,0.04)':'rgba(11,29,58,0.04)'; ctx.lineWidth=1;
+  for(let x=0;x<W;x+=60){ctx.beginPath();ctx.moveTo(x,0);ctx.lineTo(x,H);ctx.stroke();}
+  for(let y=0;y<H;y+=60){ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(W,y);ctx.stroke();}
+
+  // top bar
+  ctx.fillStyle=ACC; ctx.fillRect(0,0,W,6);
+
+  // brand
+  ctx.textAlign='center';
+  drawSarabun(ctx,'KO-TA-RA-KUMM',W/2,52,20,SUB);
+  ctx.strokeStyle=SUB; ctx.globalAlpha=0.2; ctx.lineWidth=1;
+  ctx.beginPath();ctx.moveTo(60,64);ctx.lineTo(W-60,64);ctx.stroke(); ctx.globalAlpha=1;
+
+  // headline
+  ctx.fillStyle=TXT; ctx.font='900 56px Kanit'; ctx.textAlign='center';
+  ctx.fillText('แบบไหนคุ้มกว่ากัน?',W/2,124);
+
+  // sub question
+  ctx.fillStyle=ACC; ctx.font='700 30px Sarabun'; ctx.textAlign='center';
+  ctx.fillText('ลองคิดดูก่อนนะ 🤔',W/2,164);
+
+  // product name
+  const pnSz=Math.min(44,Math.max(28,Math.floor(800/Math.max(r.pn.length,1)*1.3)));
+  drawFitText(ctx,r.pn,W/2,210,W-120,pnSz,'700',TXT);
+
+  // thin rule
+  ctx.strokeStyle=branded?'rgba(255,255,255,0.12)':'#DDE1EA'; ctx.lineWidth=1;
+  ctx.beginPath();ctx.moveTo(60,228);ctx.lineTo(W-60,228);ctx.stroke();
+
+  // ── TWO TEASER CARDS ──
+  const cY=248,cW=470,cH=500,aX=55,bX=W-55-cW;
+  drawTeaserCard(ctx,aX,cY,cW,cH,r,'A',imgA,BG,ACC,TXT,SUB,CBG,CBDR,branded);
+  drawTeaserCard(ctx,bX,cY,cW,cH,r,'B',imgB,BG,ACC,TXT,SUB,CBG,CBDR,branded);
+
+  // VS
+  const vsX=W/2,vsY=cY+cH/2;
+  ctx.fillStyle=ACC; ctx.beginPath();ctx.arc(vsX,vsY,36,0,Math.PI*2);ctx.fill();
+  ctx.fillStyle=BG; ctx.font='800 26px Kanit'; ctx.textAlign='center'; ctx.fillText('VS',vsX,vsY+10);
+
+  // ── MYSTERY / CTA ──
+  const cta1Y=cY+cH+44;
+  rRect(ctx,55,cta1Y,W-110,150,18);
+  ctx.fillStyle=ACC; ctx.fill();
+  ctx.fillStyle=BG; ctx.textAlign='center';
+  ctx.font='900 40px Kanit'; ctx.fillText('แบบไหนคุ้มกว่ากัน?',W/2,cta1Y+56);
+  ctx.font='700 28px Sarabun'; ctx.globalAlpha=0.75;
+  ctx.fillText('💬 คอมเมนต์คำตอบของคุณด้านล่างเลย!',W/2,cta1Y+100);
+  ctx.globalAlpha=1; ctx.font='600 22px Sarabun';
+  ctx.fillText('เฉลยในโพสต์ถัดไป ↓',W/2,cta1Y+132);
+
+  // question marks deco
+  const qY=cta1Y+200;
+  ctx.fillStyle=branded?'rgba(255,255,255,0.06)':'rgba(11,29,58,0.04)';
+  ctx.font='bold 120px Arial'; ctx.textAlign='left';
+  ctx.fillText('?',80,qY+110); ctx.textAlign='right'; ctx.fillText('?',W-80,qY+110);
+
+  // category info
+  ctx.fillStyle=SUB; ctx.font='24px Sarabun'; ctx.textAlign='center';
+  const cat=document.getElementById('category').value.replace(/^[^\s]*\s/,'');
+  if(cat)ctx.fillText('หมวดหมู่: '+cat, W/2, qY+64);
+
+  // footer
+  const fY=H-66;
+  ctx.strokeStyle=SUB; ctx.globalAlpha=0.15; ctx.lineWidth=1;
+  ctx.beginPath();ctx.moveTo(55,fY-16);ctx.lineTo(W-55,fY-16);ctx.stroke(); ctx.globalAlpha=1;
+  ctx.fillStyle=SUB; ctx.font='22px Sarabun'; ctx.textAlign='center';
+  ctx.fillText('#ทายได้ไหม  #ช้อปให้คุ้ม  #คุ้มค่า  #KoTaRaKumm',W/2,fY+10);
+  // bottom accent
+  ctx.fillStyle=ACC; ctx.fillRect(0,H-6,W,6);
+}
+
+function drawTeaserCard(ctx,x,y,w,h,r,side,imgData,BG,ACC,TXT,SUB,CBG,CBDR,branded){
+  const d=side==='A'?r.a:r.b;
+  // card
+  rRect(ctx,x,y,w,h,14); ctx.fillStyle=CBG; ctx.fill();
+  ctx.strokeStyle=CBDR; ctx.lineWidth=1; ctx.stroke();
+
+  // option label
+  ctx.fillStyle=ACC; ctx.font='900 52px Kanit'; ctx.textAlign='center';
+  ctx.fillText(side,x+w/2,y+54);
+
+  // image
+  const imgY=y+66,imgH=160,imgX=x+14,imgW=w-28;
+  if(imgData){
+    const img=new Image();
+    img.onload=()=>{ctx.save();rRect(ctx,imgX,imgY,imgW,imgH,10);ctx.clip();ctx.drawImage(img,imgX,imgY,imgW,imgH);ctx.restore();};
+    img.src=imgData;
+  } else {
+    rRect(ctx,imgX,imgY,imgW,imgH,10); ctx.fillStyle=CBDR; ctx.fill();
+    ctx.fillStyle=SUB; ctx.font='52px Arial'; ctx.textAlign='center';
+    ctx.fillText('🖼️',x+w/2,imgY+imgH/2+18);
+  }
+
+  const tY=imgY+imgH+28;
+  // pack name
+  drawFitText(ctx,d.n,x+w/2,tY,w-24,26,'700',TXT);
+
+  // ── SHOW: quantity, unit, SIZE only — NO PRICE ──
+  ctx.fillStyle=SUB; ctx.font='22px Sarabun'; ctx.textAlign='center';
+  ctx.fillText(`ปริมาณ: ${d.q} ${d.u}`,x+w/2,tY+38);
+
+  // PRICE HIDDEN — question mark box
+  const pBoxY=tY+62, pBoxH=100;
+  rRect(ctx,x+20,pBoxY,w-40,pBoxH,12);
+  const hideBg=branded?'rgba(245,200,0,0.1)':'rgba(30,77,183,0.06)';
+  ctx.fillStyle=hideBg; ctx.fill();
+  ctx.strokeStyle=ACC; ctx.lineWidth=1.5; ctx.setLineDash([6,4]); ctx.stroke();
+  ctx.setLineDash([]);
+  ctx.fillStyle=ACC; ctx.font='900 42px Kanit'; ctx.textAlign='center';
+  ctx.fillText('???',x+w/2,pBoxY+56);
+  ctx.fillStyle=SUB; ctx.font='18px Sarabun';
+  ctx.fillText('ราคาต่อหน่วย',x+w/2,pBoxY+82);
+
+  // show the actual price faintly? No — keep hidden
+  // show total price as label only
+  ctx.fillStyle=TXT; ctx.font='600 24px Sarabun'; ctx.textAlign='center';
+  ctx.fillText(`ราคา: ฿${d.p.toLocaleString()}`,x+w/2,pBoxY+pBoxH+28);
+}
+
+// ─── EXPORT ──────────────────────────────────────
+function exportCanvas(canvasId, label){
+  const canvas=document.getElementById(canvasId);
+  if(!R){toast('⚠️ กรุณาคำนวณก่อน');return;}
+  const fn=`kotarakumm-${label}-${R.pn||'compare'}.jpg`;
+  const a=document.createElement('a');
+  a.download=fn; a.href=canvas.toDataURL('image/jpeg',0.93); a.click();
+  toast('✅ บันทึกภาพแล้ว!');
+}
+
+// ─── COPY ────────────────────────────────────────
+function copyTxt(t){
+  if(navigator.clipboard){navigator.clipboard.writeText(t).then(()=>toast('📋 คัดลอกแล้ว!'));}
+  else{const el=document.createElement('textarea');el.value=t;document.body.appendChild(el);el.select();document.execCommand('copy');document.body.removeChild(el);toast('📋 คัดลอกแล้ว!');}
+}
+
+// ─── TOAST ───────────────────────────────────────
+let tt;
+function toast(msg){const el=document.getElementById('toast');el.textContent=msg;el.classList.add('show');clearTimeout(tt);tt=setTimeout(()=>el.classList.remove('show'),2200);}
+
+// ─── LIVE PANEL HIGHLIGHT ─────────────────────────
+['a-qty','a-price','b-qty','b-price'].forEach(id=>{
+  document.getElementById(id).addEventListener('input',()=>{
+    const aq=+document.getElementById('a-qty').value, ap=+document.getElementById('a-price').value;
+    const bq=+document.getElementById('b-qty').value, bp=+document.getElementById('b-price').value;
+    if(!aq||!ap||!bq||!bp)return;
+    const aW=(ap/aq)<=(bp/bq);
+    document.getElementById('panel-a').className='opt-panel '+(aW?'win-a':'');
+    document.getElementById('panel-b').className='opt-panel '+(!aW?'win-b':'');
+  });
+});
+</script>
+</body>
+</html>
